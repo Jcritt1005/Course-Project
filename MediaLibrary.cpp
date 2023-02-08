@@ -42,40 +42,7 @@ void MediaLibrary :: addSong() {
   }
   cin.ignore();
   
-  // Prompt for next entry
-  cout << "\nPlease enter the title of the song: ";    // FIX: make
-  getline(cin,tSong);                                  // into a menu
-  addEntry.setName(tSong);                             // function
-  
-  cout << "\nPlease enter the artist of the song: ";
-  getline(cin,tArtist);
-  addEntry.setArtist(tArtist);
-
-  cout << "\nPlease enter the album of the song: ";
-  getline(cin,tAlbum);
-  addEntry.setAlbum(tAlbum);
-
-  cout << "\nPlease enter the year released: ";
-  while (verify == false) {
-    getline(cin,tYear);
-    for (int i = 0; i < tYear.length(); i++) {
-      if (isalpha(tYear[i]) || ispunct(tYear[i])){
-        cout << "You entered an invalid year\n";
-        cout << "Please enter a 4-digit year: ";
-        break;    // Needed to break from the
-      }
-      else if (tYear.length() != 4) {
-        cout << "You entered an invalid year\n";
-        cout << "Please enter a 4-digit year: ";
-        break;
-      }
-      else if (tYear.length() == 4 && isdigit(tYear[i]) && i == 3) {
-        verify = true;
-        break;
-      }
-    }
-  }
-  cout << endl << tSong << " has been added to the list.\n\n";
+  addSongMenu();
   addEntry.setYear(tYear);
   songs[count] = addEntry;
   count++;
@@ -172,4 +139,41 @@ void MediaLibrary::fileUpdate() {
     }
   }
   dataOut.close();
+}
+
+void MediaLibrary::addSongMenu() {
+   // Prompt for next entry
+  cout << "\nPlease enter the title of the song: ";    // FIX: make
+  getline(cin,tSong);                                  // into a menu
+  addEntry.setName(tSong);                             // function
+  
+  cout << "\nPlease enter the artist of the song: ";
+  getline(cin,tArtist);
+  addEntry.setArtist(tArtist);
+
+  cout << "\nPlease enter the album of the song: ";
+  getline(cin,tAlbum);
+  addEntry.setAlbum(tAlbum);
+
+  cout << "\nPlease enter the year released: ";
+  while (verify == false) {
+    getline(cin,tYear);
+    for (int i = 0; i < tYear.length(); i++) {
+      if (isalpha(tYear[i]) || ispunct(tYear[i])){
+        cout << "You entered an invalid year\n";
+        cout << "Please enter a 4-digit year: ";
+        break;    // Needed to break from the
+      }
+      else if (tYear.length() != 4) {
+        cout << "You entered an invalid year\n";
+        cout << "Please enter a 4-digit year: ";
+        break;
+      }
+      else if (tYear.length() == 4 && isdigit(tYear[i]) && i == 3) {
+        verify = true;
+        break;
+      }
+    }
+  }
+  cout << endl << tSong << " has been added to the list.\n\n";
 }
